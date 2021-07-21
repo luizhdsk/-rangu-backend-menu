@@ -1,0 +1,37 @@
+[
+  {
+    "500": {
+      "code": "500",
+      "httpStatus": 500,
+      "description": "Internal Server Error, please contact the support or try it again later."
+    }
+  },
+  {
+    "412.1": {
+      "code": "412.1",
+      "httpStatus": 412,
+      "description": "name is required."
+    }
+  },
+  {
+    "412.2": {
+      "code": "412.2",
+      "httpStatus": 412,
+      "description": "price is required."
+    }
+  },
+  {
+    "412.3": {
+      "code": "412.3",
+      "httpStatus": 412,
+      "description": "category is required."
+    }
+  },
+  {
+    "401": {
+      "code": "401",
+      "httpStatus": 401,
+      "description": "Token not found"
+    }
+  }
+]
