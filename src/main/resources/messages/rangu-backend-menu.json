@@ -28,10 +28,31 @@
     }
   },
   {
-    "401": {
-      "code": "401",
-      "httpStatus": 401,
-      "description": "Token not found"
+    "412.4": {
+      "code": "412.4",
+      "httpStatus": 412,
+      "description": "estimatedTime is required."
+    }
+  },
+  {
+    "412.4": {
+      "code": "412.4",
+      "httpStatus": 412,
+      "description": "estimatedTime is required."
+    }
+  },
+  {
+    "412.5": {
+      "code": "412.5",
+      "httpStatus": "412",
+      "description": "Category is invalid."
+    }
+  },
+  {
+    "412.6": {
+      "code": "412.6",
+      "httpStatus": "412",
+      "description": "restaurantId is required."
     }
   }
 ]

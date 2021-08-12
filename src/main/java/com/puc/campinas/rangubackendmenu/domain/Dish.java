@@ -33,8 +33,7 @@ public class Dish implements Serializable {
 
   private String description;
 
-  @Enumerated(EnumType.STRING)
-  private Category category;
+  private String category;
 
   private Double price;
 
@@ -43,6 +42,14 @@ public class Dish implements Serializable {
   private String estimatedTime;
 
   public DishResponse toDishResponse() {
-    return null;
+
+    return DishResponse.builder()
+        .id(id)
+        .name(name)
+        .image(image)
+        .description(description)
+        .category(category)
+        .estimatedTime(estimatedTime)
+        .build();
   }
 }

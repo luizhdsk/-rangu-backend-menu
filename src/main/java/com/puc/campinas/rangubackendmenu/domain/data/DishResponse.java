@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DishResponse {
 
+  private String id;
+
   private String name;
 
   @JsonInclude(Include.NON_NULL)
@@ -24,7 +26,7 @@ public class DishResponse {
 
   private Double price;
 
-  private Category category;
+  private String category;
 
   private String estimatedTime;
 

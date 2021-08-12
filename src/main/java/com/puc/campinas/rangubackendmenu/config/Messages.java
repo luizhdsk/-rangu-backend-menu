@@ -16,7 +16,11 @@ public final class Messages {
 
   public static final String CATEGORY_IS_REQUIRED = "412.3";
 
-  public static final String USER_NOT_FOUND = "422.8";
+  public static final String ESTIMATED_TIME_IS_REQUIRED = "412.4";
+
+  public static final String CATEGORY_IS_INVALID = "412.5";
+
+  public static final String RESTAURANT_ID_IS_REQUIRED = "412.6";
 
 
 }
