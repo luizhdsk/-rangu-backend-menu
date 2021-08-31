@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/rangu/v1/tables")
+@RequestMapping("/api/rangu/v1/restaurantTables")
 @Slf4j
 public class RestaurantTableController {
 
@@ -28,7 +28,8 @@ public class RestaurantTableController {
       @RequestBody @Valid RestaurantTableRequest restaurantTableRequest) {
     var restaurantTable = restaurantTableService
         .saveRestaurantTable(restaurantTableRequest.toRestaurantTable());
-    return ResponseEntity.status(HttpStatus.CREATED).body(restaurantTable.toRestaurantTableResponse());
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(restaurantTable.toRestaurantTableResponse());
   }
 
   @DeleteMapping

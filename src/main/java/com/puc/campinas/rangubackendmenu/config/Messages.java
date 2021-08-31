@@ -5,6 +5,9 @@ public final class Messages {
   private Messages() {
   }
 
+
+
+
   //500
   public static final String INTERNAL_SERVER_ERROR = "500";
 
@@ -22,5 +25,15 @@ public final class Messages {
 
   public static final String RESTAURANT_ID_IS_REQUIRED = "412.6";
 
+  public static final String CLIENT_ID_IS_REQUIRED = "412.7";
 
+  public static final String TABLE_ID_IS_REQUIRED = "412.8";
+
+  //422
+
+  public static final String RESTAURANT_TABLE_NOT_FOUND = "422.1";
+
+  public static final String RESTAURANT_NOT_FOUND = "422.2";
+
+  public static final String RESTAURANT_OR_CATEGORY_NOT_FOUND = "422.3";
 }

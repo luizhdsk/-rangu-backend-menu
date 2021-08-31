@@ -8,6 +8,8 @@ import com.grcosta.messagelocator.exception.ServiceException;
 import com.grcosta.messagelocator.interfaces.MessageService;
 import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.DishException;
+import com.puc.campinas.rangubackendmenu.config.exception.RanguMenuException;
+import com.puc.campinas.rangubackendmenu.config.exception.RestaurantTableException;
 import feign.FeignException;
 import java.util.Date;
 import java.util.Map;
@@ -66,9 +68,9 @@ public class ExceptionHandlerAdvice {
     return ResponseEntity.status(httpStatus).body(body);
   }
 
-  @ExceptionHandler(DishException.class)
-  public ResponseEntity<ResponseAdvice> handleUserException(DishException exception) {
-    log.error("User Handler", exception);
+  @ExceptionHandler(RanguMenuException.class)
+  public ResponseEntity<ResponseAdvice> handleDishException(RanguMenuException exception) {
+    log.error("RanguMenu Handler", exception);
 
     HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
     ResponseAdvice body = new ResponseAdvice();

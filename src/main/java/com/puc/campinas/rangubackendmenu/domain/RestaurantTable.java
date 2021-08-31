@@ -1,6 +1,7 @@
 package com.puc.campinas.rangubackendmenu.domain;
 
 import com.puc.campinas.rangubackendmenu.domain.data.RestaurantTableResponse;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantTable {
+public class RestaurantTable implements Serializable {
 
   @Id
   @GeneratedValue(generator = "uuid")
@@ -27,6 +28,8 @@ public class RestaurantTable {
   private String number;
 
   private String restaurantId;
+
+  private String clientTableId;
 
   public RestaurantTableResponse toRestaurantTableResponse() {
     return RestaurantTableResponse.builder()

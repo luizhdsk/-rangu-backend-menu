@@ -2,6 +2,8 @@ package com.puc.campinas.rangubackendmenu.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,22 +13,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DishResponse {
+public class ClientTableResponse {
 
   private String id;
 
-  private String name;
+  private String clientId;
+
+  private String number;
+
+  private String restaurantId;
+
+  private Date startDateTime;
 
   @JsonInclude(Include.NON_NULL)
-  private StringBuilder image;
+  private List<String> tableMembers;
 
   @JsonInclude(Include.NON_NULL)
-  private String description;
-
-  private Double price;
-
-  private String category;
-
-  private String estimatedTime;
+  private List<String> orders;
 
 }
