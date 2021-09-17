@@ -52,7 +52,35 @@
     "412.6": {
       "code": "412.6",
       "httpStatus": "412",
-      "description": "restaurantId is required."
+      "description": "tableId is required."
+    }
+  },
+  {
+    "412.7": {
+      "code": "412.7",
+      "httpStatus": "412",
+      "description": "number is required."
+    }
+  },
+  {
+    "422.1": {
+      "code": "422.1",
+      "httpStatus": "422",
+      "description": "restaurant table not found."
+    }
+  },
+  {
+    "422.2": {
+      "code": "422.2",
+      "httpStatus": "422",
+      "description": "restaurant not found."
+    }
+  },
+  {
+    "422.3": {
+      "code": "422.2",
+      "httpStatus": "422",
+      "description": "restaurant or category not found."
     }
   }
 ]

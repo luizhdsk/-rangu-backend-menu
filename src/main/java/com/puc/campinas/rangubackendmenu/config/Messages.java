@@ -23,11 +23,9 @@ public final class Messages {
 
   public static final String CATEGORY_IS_INVALID = "412.5";
 
-  public static final String RESTAURANT_ID_IS_REQUIRED = "412.6";
+  public static final String TABLE_ID_IS_REQUIRED = "412.6";
 
-  public static final String CLIENT_ID_IS_REQUIRED = "412.7";
-
-  public static final String TABLE_ID_IS_REQUIRED = "412.8";
+  public static final String NUMBER_ID_IS_REQUIRED = "412.7";
 
   //422
 

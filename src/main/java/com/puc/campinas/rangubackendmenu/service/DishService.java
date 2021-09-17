@@ -16,8 +16,17 @@ public class DishService {
 
   private DishRepository dishRepository;
 
-  public Dish saveDish(Dish dish) {
+  private CategoryService categoryService;
+
+  public Dish saveDish(String restaurantId, Dish dish) {
+    //TODO verificar se restaurante existe
+    dish.setRestaurantId(restaurantId);
+    validCategory(dish.getCategory(), dish.getRestaurantId());
     return dishRepository.save(dish);
+  }
+
+  private void validCategory(String category, String restaurantId) {
+    categoryService.validCategory(category, restaurantId);
   }
 
   public Collection<DishResponse> getDishes(String restaurantId) {

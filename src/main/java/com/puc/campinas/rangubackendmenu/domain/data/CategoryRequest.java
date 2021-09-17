@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantTableRequest {
+public class CategoryRequest {
 
-  @NotBlank(message = Messages.NUMBER_ID_IS_REQUIRED)
-  private String number;
+  @NotBlank(message = Messages.NAME_IS_REQUIRED)
+  private String name;
 
 }

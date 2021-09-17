@@ -31,9 +31,9 @@ public class DishController {
 
   @PostMapping
   public ResponseEntity<DishResponse> createDish(
+      @RequestHeader @Valid String restaurantId,
       @RequestBody @Valid DishRequest dishRequest) {
-    //TODO verificar se restaurante existe
-    var dish = dishService.saveDish(dishRequest.toDish());
+    var dish = dishService.saveDish(restaurantId, dishRequest.toDish());
     return ResponseEntity.status(HttpStatus.CREATED).body(dish.toDishResponse());
   }
 

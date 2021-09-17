@@ -28,9 +28,6 @@ public class DishRequest {
   @NotNull(message = Messages.PRICE_IS_REQUIRED)
   private Double price;
 
-  @NotBlank(message = Messages.RESTAURANT_ID_IS_REQUIRED)
-  private String restaurantId;
-
   @NotBlank(message = Messages.ESTIMATED_TIME_IS_REQUIRED)
   private String estimatedTime;
 
@@ -40,7 +37,6 @@ public class DishRequest {
         .image(image)
         .description(description)
         .price(price)
-        .restaurantId(restaurantId)
         .category(category)
         .estimatedTime(estimatedTime)
         .build();

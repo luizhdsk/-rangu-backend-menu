@@ -13,9 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClientTableRequest {
 
-  @NotBlank(message = Messages.CLIENT_ID_IS_REQUIRED)
-  private String clientId;
-
   @NotBlank(message = Messages.TABLE_ID_IS_REQUIRED)
   private String tableId;
 

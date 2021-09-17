@@ -3,7 +3,6 @@ package com.puc.campinas.rangubackendmenu.service;
 import com.google.common.base.Strings;
 import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
-import com.puc.campinas.rangubackendmenu.domain.data.ClientTableRequest;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -16,21 +15,21 @@ public class ClientTableService {
   ClientTableRepository clientTableRepository;
   RestaurantTableService restaurantTableService;
 
-  public ClientTable startTable(ClientTableRequest request) {
-    var restaurantTable = getRestaurantTable(request.getTableId());
+  public ClientTable startTable(String clientId, String restaurantTableId) {
+    var restaurantTable = getRestaurantTable(restaurantTableId);
     if (isEmpty(restaurantTable)) {
-      var clientTable = createClientTable(request.getClientId(), restaurantTable);
+      var clientTable = createClientTable(clientId, restaurantTable);
       clientTable = clientTableRepository.save(clientTable);
       occupyRestaurantTable(restaurantTable, clientTable.getId());
       return clientTable;
     } else {
       var updateClientTable = clientTableRepository.getOne(restaurantTable.getClientTableId());
-      updateClientTable.getTableMembers().add(request.getClientId());
+      updateClientTable.getTableMembers().add(clientId);
       return clientTableRepository.save(updateClientTable);
     }
   }
 
-  private void occupyRestaurantTable(RestaurantTable restaurantTable,String clientTableId) {
+  private void occupyRestaurantTable(RestaurantTable restaurantTable, String clientTableId) {
     restaurantTableService.occupyRestaurantTable(restaurantTable, clientTableId);
   }
 
