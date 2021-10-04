@@ -8,6 +8,7 @@ public final class Messages {
 
 
 
+
   //500
   public static final String INTERNAL_SERVER_ERROR = "500";
 
@@ -34,4 +35,8 @@ public final class Messages {
   public static final String RESTAURANT_NOT_FOUND = "422.2";
 
   public static final String RESTAURANT_OR_CATEGORY_NOT_FOUND = "422.3";
+
+  public static final String CLIENT_TABLE_NOT_FOUND = "422.4";
+
+  public static final String RESTAURANT_TABLE_ALREADY_EXISTS = "422.5";
 }

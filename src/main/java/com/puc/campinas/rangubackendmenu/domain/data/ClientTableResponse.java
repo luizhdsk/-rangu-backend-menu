@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,7 @@ public class ClientTableResponse {
   private Date startDateTime;
 
   @JsonInclude(Include.NON_NULL)
-  private List<String> tableMembers;
+  private Set<String> tableMembers;
 
   @JsonInclude(Include.NON_NULL)
   private List<String> orders;

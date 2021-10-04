@@ -48,7 +48,7 @@ public class DishController {
     return ResponseEntity.status(HttpStatus.OK).body(dishes);
   }
 
-  @DeleteMapping()
+  @DeleteMapping
   @ResponseStatus(HttpStatus.OK)
   public void deleteAllDishes(
       @RequestHeader String restaurantId) {

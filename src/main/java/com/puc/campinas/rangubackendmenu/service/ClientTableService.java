@@ -1,6 +1,8 @@
 package com.puc.campinas.rangubackendmenu.service;
 
 import com.google.common.base.Strings;
+import com.puc.campinas.rangubackendmenu.config.Messages;
+import com.puc.campinas.rangubackendmenu.config.exception.ClientTableException;
 import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
@@ -23,7 +25,8 @@ public class ClientTableService {
       occupyRestaurantTable(restaurantTable, clientTable.getId());
       return clientTable;
     } else {
-      var updateClientTable = clientTableRepository.getOne(restaurantTable.getClientTableId());
+      var updateClientTable = clientTableRepository.findById(restaurantTable.getClientTableId())
+          .get();
       updateClientTable.getTableMembers().add(clientId);
       return clientTableRepository.save(updateClientTable);
     }
@@ -52,6 +55,7 @@ public class ClientTableService {
 
 
   public ClientTable getClientTable(String tableId) {
-    return clientTableRepository.findById(tableId).get();
+    return clientTableRepository.findById(tableId).orElseThrow(() -> new ClientTableException(
+        Messages.CLIENT_TABLE_NOT_FOUND));
   }
 }

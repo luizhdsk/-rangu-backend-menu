@@ -13,12 +13,7 @@ public class CategoryService {
 
   private CategoryRepository categoryRepository;
 
-  public Category saveCategory(String restaurantId, String name) {
-    var category = Category.builder()
-        .name(name)
-        .restaurantId(restaurantId)
-        .isActive(Boolean.TRUE)
-        .build();
+  public Category saveCategory(Category category) {
     return categoryRepository.save(category);
   }
 

@@ -26,7 +26,7 @@ public class CategoryController {
   public ResponseEntity<CategoryResponse> createCategory(
       @RequestHeader @Valid String restaurantId,
       @RequestBody @Valid CategoryRequest request) {
-    var category = categoryService.saveCategory(restaurantId, request.getName());
+    var category = categoryService.saveCategory(request.toCategory(restaurantId));
     return ResponseEntity.status(HttpStatus.CREATED).body(category.toCategoryResponse());
   }
 

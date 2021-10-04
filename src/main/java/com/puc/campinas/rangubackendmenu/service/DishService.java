@@ -19,7 +19,6 @@ public class DishService {
   private CategoryService categoryService;
 
   public Dish saveDish(String restaurantId, Dish dish) {
-    //TODO verificar se restaurante existe
     dish.setRestaurantId(restaurantId);
     validCategory(dish.getCategory(), dish.getRestaurantId());
     return dishRepository.save(dish);
