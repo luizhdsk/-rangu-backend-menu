@@ -6,6 +6,7 @@ import com.puc.campinas.rangubackendmenu.domain.Dish;
 import com.puc.campinas.rangubackendmenu.domain.data.DishResponse;
 import com.puc.campinas.rangubackendmenu.repository.DishRepository;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,6 @@ public class DishService {
   private CategoryService categoryService;
 
   public Dish saveDish(String restaurantId, Dish dish) {
-    //TODO verificar se restaurante existe
     dish.setRestaurantId(restaurantId);
     validCategory(dish.getCategory(), dish.getRestaurantId());
     return dishRepository.save(dish);
@@ -48,5 +48,13 @@ public class DishService {
 
   public void deleteAllDishesByRestaurantId(String restaurantId) {
     dishRepository.deleteAllByRestaurantId(restaurantId);
+  }
+
+  public Collection<DishResponse> getDishesOrders(List<String> dishesId) {
+    var dishes = dishRepository.findByIdIn(dishesId);
+    if(dishes.size() != dishesId.size()){
+      throw new DishException(Messages.DISH_NOT_FOUND);
+    }
+    return dishes.stream().map(Dish::toDishResponse).collect(Collectors.toList());
   }
 }

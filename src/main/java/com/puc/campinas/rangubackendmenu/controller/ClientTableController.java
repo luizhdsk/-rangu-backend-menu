@@ -24,11 +24,10 @@ public class ClientTableController {
 
   private ClientTableService clientTableService;
 
-  @PostMapping()
+  @PostMapping
   public ResponseEntity<ClientTableResponse> startTable(
       @RequestHeader @Valid String clientId,
       @RequestBody @Valid ClientTableRequest request) {
-    //TODO verificar se o cliente existe
     var clientTable = clientTableService.startTable(clientId, request.getTableId());
     return ResponseEntity.status(HttpStatus.CREATED).body(clientTable.toClientTableResponse());
   }

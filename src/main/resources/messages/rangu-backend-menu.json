@@ -82,5 +82,33 @@
       "httpStatus": "422",
       "description": "restaurant or category not found."
     }
+  },
+  {
+    "422.4": {
+      "code": "422.4",
+      "httpStatus": "422",
+      "description": "client table not found."
+    }
+  },
+  {
+    "422.5": {
+      "code": "422.5",
+      "httpStatus": "422",
+      "description": "restaurant table already exists."
+    }
+  },
+  {
+    "422.6": {
+      "code": "422.6",
+      "httpStatus": "422",
+      "description": "category already exists."
+    }
+  },
+  {
+    "422.7": {
+      "code": "422.7",
+      "httpStatus": "422",
+      "description": "dish not found."
+    }
   }
 ]

@@ -2,9 +2,11 @@ package com.puc.campinas.rangubackendmenu.domain;
 
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableResponse;
 import com.puc.campinas.rangubackendmenu.repository.StringListConverter;
+import com.puc.campinas.rangubackendmenu.repository.StringSetConverter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,8 +41,8 @@ public class ClientTable implements Serializable {
 
   private Date endDateTime;
 
-  @Convert(converter = StringListConverter.class)
-  private List<String> tableMembers;
+  @Convert(converter = StringSetConverter.class)
+  private Set<String> tableMembers;
 
   @Convert(converter = StringListConverter.class)
   private List<String> orders;

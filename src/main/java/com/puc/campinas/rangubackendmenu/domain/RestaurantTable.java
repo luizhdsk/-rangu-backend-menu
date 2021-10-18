@@ -1,7 +1,10 @@
 package com.puc.campinas.rangubackendmenu.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.puc.campinas.rangubackendmenu.domain.data.RestaurantTableResponse;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,6 +32,7 @@ public class RestaurantTable implements Serializable {
 
   private String restaurantId;
 
+  @JsonInclude(Include.NON_NULL)
   private String clientTableId;
 
   public RestaurantTableResponse toRestaurantTableResponse() {
@@ -36,6 +40,7 @@ public class RestaurantTable implements Serializable {
         .id(id)
         .number(number)
         .restaurantId(restaurantId)
+        .clientTableId(clientTableId)
         .build();
   }
 }

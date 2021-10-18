@@ -69,7 +69,7 @@ public class ExceptionHandlerAdvice {
   }
 
   @ExceptionHandler(RanguMenuException.class)
-  public ResponseEntity<ResponseAdvice> handleDishException(RanguMenuException exception) {
+  public ResponseEntity<ResponseAdvice> handleRanguMenuException(RanguMenuException exception) {
     log.error("RanguMenu Handler", exception);
 
     HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
