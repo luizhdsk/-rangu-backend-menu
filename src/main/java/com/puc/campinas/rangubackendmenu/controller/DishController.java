@@ -4,6 +4,7 @@ import com.puc.campinas.rangubackendmenu.domain.data.DishRequest;
 import com.puc.campinas.rangubackendmenu.domain.data.DishResponse;
 import com.puc.campinas.rangubackendmenu.service.DishService;
 import java.util.Collection;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,13 @@ public class DishController {
     var dishes = StringUtils.isBlank(category) ?
         dishService.getDishes(restaurantId)
         : dishService.getDishesByCategory(restaurantId, category);
+    return ResponseEntity.status(HttpStatus.OK).body(dishes);
+  }
+
+  @GetMapping("/{dishesIds}")
+  public ResponseEntity<Collection<DishResponse>> getDishesOrders(
+      @PathVariable List<String> dishesIds) {
+    var dishes = dishService.getDishesOrders(dishesIds);
     return ResponseEntity.status(HttpStatus.OK).body(dishes);
   }
 

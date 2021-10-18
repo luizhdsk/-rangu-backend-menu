@@ -7,6 +7,7 @@ import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
 import java.util.Date;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,7 @@ public class ClientTableService {
         .clientId(clientId)
         .number(restaurantTable.getNumber())
         .restaurantId(restaurantTable.getRestaurantId())
+        .tableMembers(Set.of(clientId))
         .startDateTime(new Date())
         .build();
   }

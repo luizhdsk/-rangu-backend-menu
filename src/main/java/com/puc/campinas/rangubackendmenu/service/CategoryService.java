@@ -14,7 +14,16 @@ public class CategoryService {
   private CategoryRepository categoryRepository;
 
   public Category saveCategory(Category category) {
-    return categoryRepository.save(category);
+    if (!existsCategory(category)) {
+      return categoryRepository.save(category);
+    } else {
+      throw new CategoryException(Messages.CATEGORY_ALREADY_EXISTS);
+    }
+  }
+
+  private boolean existsCategory(Category category) {
+    return categoryRepository.existsByNameAndRestaurantId(category.getName(),
+        category.getRestaurantId());
   }
 
   public void validCategory(String category, String restaurantId) {

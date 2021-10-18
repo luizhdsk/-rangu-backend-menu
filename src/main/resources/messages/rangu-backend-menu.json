@@ -96,5 +96,19 @@
       "httpStatus": "422",
       "description": "restaurant table already exists."
     }
+  },
+  {
+    "422.6": {
+      "code": "422.6",
+      "httpStatus": "422",
+      "description": "category already exists."
+    }
+  },
+  {
+    "422.7": {
+      "code": "422.7",
+      "httpStatus": "422",
+      "description": "dish not found."
+    }
   }
 ]

@@ -49,6 +49,7 @@ public class Dish implements Serializable {
         .image(image)
         .description(description)
         .category(category)
+        .price(price)
         .estimatedTime(estimatedTime)
         .build();
   }

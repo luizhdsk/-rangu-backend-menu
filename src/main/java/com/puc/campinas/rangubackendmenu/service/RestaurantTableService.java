@@ -4,11 +4,12 @@ import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.RestaurantTableException;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
 import com.puc.campinas.rangubackendmenu.repository.RestaurantTableRepository;
-import java.util.ArrayList;
-import java.util.List;
-import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -61,7 +62,7 @@ public class RestaurantTableService {
 
   public void occupyRestaurantTable(RestaurantTable restaurantTable, String clientTableId) {
     restaurantTable.setClientTableId(clientTableId);
-    saveRestaurantTable(restaurantTable);
+    restaurantTableRepository.save(restaurantTable);
   }
 
   public List<RestaurantTable> getRestaurantTablesByRestaurantId(String restaurantId) {
