@@ -2,8 +2,14 @@ package com.puc.campinas.rangubackendmenu.service;
 
 import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.CategoryException;
+import com.puc.campinas.rangubackendmenu.config.exception.DishException;
 import com.puc.campinas.rangubackendmenu.domain.Category;
+import com.puc.campinas.rangubackendmenu.domain.Dish;
+import com.puc.campinas.rangubackendmenu.domain.data.CategoryResponse;
+import com.puc.campinas.rangubackendmenu.domain.data.DishResponse;
 import com.puc.campinas.rangubackendmenu.repository.CategoryRepository;
+import java.util.Collection;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +36,12 @@ public class CategoryService {
     categoryRepository.findByNameAndRestaurantId(category, restaurantId).orElseThrow(() -> {
       throw new CategoryException(Messages.RESTAURANT_OR_CATEGORY_NOT_FOUND);
     });
+  }
+
+  public Collection<CategoryResponse> getCategories(String restaurantId) {
+    var dishes = categoryRepository.findAllByRestaurantId(restaurantId)
+        .orElseThrow(() -> new CategoryException(
+            Messages.RESTAURANT_NOT_FOUND));
+    return dishes.stream().map(Category::toCategoryResponse).collect(Collectors.toList());
   }
 }
