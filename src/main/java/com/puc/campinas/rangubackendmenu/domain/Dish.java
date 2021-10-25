@@ -29,7 +29,7 @@ public class Dish implements Serializable {
 
   private String name;
 
-  private StringBuilder image;
+  private String image;
 
   private String description;
 
