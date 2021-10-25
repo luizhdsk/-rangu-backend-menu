@@ -18,7 +18,7 @@ public class DishResponse {
   private String name;
 
   @JsonInclude(Include.NON_NULL)
-  private StringBuilder image;
+  private String image;
 
   @JsonInclude(Include.NON_NULL)
   private String description;

@@ -18,7 +18,7 @@ public class DishRequest {
   @NotBlank(message = Messages.NAME_IS_REQUIRED)
   private String name;
 
-  private StringBuilder image;
+  private String image;
 
   private String description = "No description";
 
