@@ -14,6 +14,6 @@ public interface CategoryRepository extends JpaRepository<Category, String> {
 
   Boolean existsByNameAndRestaurantId(String name, String restaurantId);
 
-  Optional<Collection<Category>> findByRestaurantId(String restaurantId);
+  Optional<Collection<Category>> findAllByRestaurantId(String restaurantId);
 
 }

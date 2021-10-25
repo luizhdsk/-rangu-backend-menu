@@ -39,7 +39,7 @@ public class CategoryService {
   }
 
   public Collection<CategoryResponse> getCategories(String restaurantId) {
-    var dishes = categoryRepository.findByRestaurantId(restaurantId)
+    var dishes = categoryRepository.findAllByRestaurantId(restaurantId)
         .orElseThrow(() -> new CategoryException(
             Messages.RESTAURANT_NOT_FOUND));
     return dishes.stream().map(Category::toCategoryResponse).collect(Collectors.toList());
