@@ -5,7 +5,9 @@ import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.ClientTableException;
 import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
+import com.puc.campinas.rangubackendmenu.integration.users.UsersClient;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
 import lombok.AllArgsConstructor;
@@ -43,7 +45,7 @@ public class ClientTableService {
         .number(restaurantTable.getNumber())
         .restaurantId(restaurantTable.getRestaurantId())
         .tableMembers(Set.of(clientId))
-        .startDateTime(new Date())
+        .startDateTime(Instant.now())
         .build();
   }
 

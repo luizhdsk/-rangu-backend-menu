@@ -2,6 +2,7 @@ package com.puc.campinas.rangubackendmenu.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +25,8 @@ public class ClientTableResponse {
 
   private String restaurantId;
 
-  private Date startDateTime;
+  private String startDateTime;
 
-  @JsonInclude(Include.NON_NULL)
-  private Set<String> tableMembers;
-
-  @JsonInclude(Include.NON_NULL)
-  private List<String> orders;
+  private Collection<PublicClientResponse> tableMembers;
 
 }

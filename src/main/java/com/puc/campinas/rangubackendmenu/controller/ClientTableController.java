@@ -2,6 +2,7 @@ package com.puc.campinas.rangubackendmenu.controller;
 
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableRequest;
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableResponse;
+import com.puc.campinas.rangubackendmenu.integration.users.UsersClient;
 import com.puc.campinas.rangubackendmenu.service.ClientTableService;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,19 +24,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientTableController {
 
   private ClientTableService clientTableService;
+  private UsersClient usersClient;
 
   @PostMapping
   public ResponseEntity<ClientTableResponse> startTable(
       @RequestHeader @Valid String clientId,
       @RequestBody @Valid ClientTableRequest request) {
     var clientTable = clientTableService.startTable(clientId, request.getTableId());
-    return ResponseEntity.status(HttpStatus.CREATED).body(clientTable.toClientTableResponse());
+    var members = usersClient.getClients(clientTable.getTableMembers());
+    return ResponseEntity.status(HttpStatus.CREATED).body(clientTable.toClientTableResponse(members));
   }
 
   @GetMapping("/{tableId}")
   public ResponseEntity<ClientTableResponse> getTable(@PathVariable String tableId) {
     var clientTable = clientTableService.getClientTable(tableId);
-    return ResponseEntity.status(HttpStatus.OK).body(clientTable.toClientTableResponse());
+    var members = usersClient.getClients(clientTable.getTableMembers());
+    return ResponseEntity.status(HttpStatus.OK).body(clientTable.toClientTableResponse(members));
   }
 
 }

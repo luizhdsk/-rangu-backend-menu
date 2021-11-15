@@ -1,11 +1,13 @@
 package com.puc.campinas.rangubackendmenu.domain;
 
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableResponse;
-import com.puc.campinas.rangubackendmenu.repository.StringListConverter;
+import com.puc.campinas.rangubackendmenu.domain.data.PublicClientResponse;
 import com.puc.campinas.rangubackendmenu.repository.StringSetConverter;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -37,25 +39,23 @@ public class ClientTable implements Serializable {
 
   private String restaurantId;
 
-  private Date startDateTime;
+  private Instant startDateTime;
 
-  private Date endDateTime;
+  private Instant endDateTime;
 
   @Convert(converter = StringSetConverter.class)
   private Set<String> tableMembers;
 
-  @Convert(converter = StringListConverter.class)
-  private List<String> orders;
 
-  public ClientTableResponse toClientTableResponse() {
+  public ClientTableResponse toClientTableResponse(Collection<PublicClientResponse> members) {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     return ClientTableResponse.builder()
         .id(id)
         .clientId(clientId)
         .number(number)
         .restaurantId(restaurantId)
-        .startDateTime(startDateTime)
-        .tableMembers(tableMembers)
-        .orders(orders)
+        .startDateTime(formatter.format(Date.from(startDateTime)))
+        .tableMembers(members)
         .build();
   }
 }
