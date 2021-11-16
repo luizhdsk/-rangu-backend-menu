@@ -62,4 +62,11 @@ public class ClientTableService {
     return clientTableRepository.findById(tableId).orElseThrow(() -> new ClientTableException(
         Messages.CLIENT_TABLE_NOT_FOUND));
   }
+
+  public ClientTable leaveTable(String tableId, String clientId) {
+    var table = getClientTable(tableId);
+    table.getTableMembers().remove(clientId);
+    clientTableRepository.save(table);
+    return table;
+  }
 }
