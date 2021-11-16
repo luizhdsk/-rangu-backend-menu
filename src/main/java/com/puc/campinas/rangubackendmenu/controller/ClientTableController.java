@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,14 @@ public class ClientTableController {
     var clientTable = clientTableService.getClientTable(tableId);
     var members = usersClient.getClients(clientTable.getTableMembers());
     return ResponseEntity.status(HttpStatus.OK).body(clientTable.toClientTableResponse(members));
+  }
+
+  @PatchMapping("/{tableId}")
+  public ResponseEntity<ClientTableResponse> leaveTable(@PathVariable String tableId,
+      @RequestHeader @Valid String clientId) {
+    var clientTable = clientTableService.leaveTable(tableId, clientId);
+    var members = usersClient.getClients(clientTable.getTableMembers());
+    return ResponseEntity.ok(clientTable.toClientTableResponse(members));
   }
 
 }

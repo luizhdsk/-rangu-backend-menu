@@ -2,6 +2,7 @@ package com.puc.campinas.rangubackendmenu.service;
 
 import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.DishException;
+import com.puc.campinas.rangubackendmenu.config.exception.RestaurantTableException;
 import com.puc.campinas.rangubackendmenu.domain.Dish;
 import com.puc.campinas.rangubackendmenu.domain.data.DishResponse;
 import com.puc.campinas.rangubackendmenu.repository.DishRepository;
@@ -56,5 +57,15 @@ public class DishService {
       throw new DishException(Messages.DISH_NOT_FOUND);
     }
     return dishes.stream().map(Dish::toDishResponse).collect(Collectors.toList());
+  }
+
+  public Dish updateDish(String dishId, String restaurantId, Dish dishUpdate) {
+    var dish = dishRepository.findById(dishId).orElseThrow(() -> new DishException(
+        Messages.DISH_NOT_FOUND));
+    if (dish.getRestaurantId() != (restaurantId))
+      throw new RestaurantTableException(Messages.DISH_NOT_FOUND);
+    dish.update(dishUpdate);
+    return dishRepository.save(dish);
+
   }
 }

@@ -3,8 +3,6 @@ package com.puc.campinas.rangubackendmenu.domain;
 import com.puc.campinas.rangubackendmenu.domain.data.DishResponse;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -52,5 +50,14 @@ public class Dish implements Serializable {
         .price(price)
         .estimatedTime(estimatedTime)
         .build();
+  }
+
+  public void update(Dish dishUpdate) {
+    setName(dishUpdate.getName());
+    setImage(dishUpdate.getImage());
+    setDescription(dishUpdate.getDescription());
+    setPrice(dishUpdate.getPrice());
+    setCategory(dishUpdate.getCategory());
+    setEstimatedTime(dishUpdate.getEstimatedTime());
   }
 }
