@@ -66,7 +66,7 @@ public class DishService {
         Messages.DISH_NOT_FOUND));
     validCategory(dishUpdate.getCategory(), dish.getRestaurantId());
     if (dish.getRestaurantId() != (restaurantId)) {
-      log.error("Invalid Restaurant");
+      log.error("Invalid Restaurant 1={}, 2={}", dish.getRestaurantId(), restaurantId);
       throw new RestaurantTableException(Messages.DISH_NOT_FOUND);
     }
     dish.update(dishUpdate);
