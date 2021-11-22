@@ -9,6 +9,7 @@ import com.puc.campinas.rangubackendmenu.repository.DishRepository;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class DishService {
     return dishes.stream().map(Dish::toDishResponse).collect(Collectors.toList());
   }
 
+  @Transactional
   public void deleteDish(String dishId, String restaurantId) {
     dishRepository.deleteByIdAndRestaurantId(dishId, restaurantId);
   }
@@ -62,11 +64,10 @@ public class DishService {
   }
 
   public Dish updateDish(String dishId, String restaurantId, Dish dishUpdate) {
-    var dish = dishRepository.findById(dishId).orElseThrow(() -> new DishException(
-        Messages.DISH_NOT_FOUND));
+    var dish = dishRepository.findById(dishId).get();
     validCategory(dishUpdate.getCategory(), dish.getRestaurantId());
-    if (dish.getRestaurantId() != restaurantId) {
-      log.error("Invalid Restaurant 1={}, 2={}", dish.getRestaurantId(), restaurantId);
+    if (!dish.getRestaurantId().equals(restaurantId)) {
+      log.error("Invalid Restaurant 1={}, 2={}");
       throw new RestaurantTableException(Messages.DISH_NOT_FOUND);
     }
     dish.update(dishUpdate);
