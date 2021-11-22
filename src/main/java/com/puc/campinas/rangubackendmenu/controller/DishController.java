@@ -39,7 +39,7 @@ public class DishController {
     return ResponseEntity.status(HttpStatus.CREATED).body(dish.toDishResponse());
   }
 
-  @PutMapping("/dishId")
+  @PutMapping("/{dishId}")
   public ResponseEntity<DishResponse> updateDish(
       @PathVariable String dishId,
       @RequestHeader @Valid String restaurantId,
