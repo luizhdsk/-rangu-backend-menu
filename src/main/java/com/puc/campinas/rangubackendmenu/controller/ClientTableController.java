@@ -1,5 +1,6 @@
 package com.puc.campinas.rangubackendmenu.controller;
 
+import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableRequest;
 import com.puc.campinas.rangubackendmenu.domain.data.ClientTableResponse;
 import com.puc.campinas.rangubackendmenu.integration.users.UsersClient;
@@ -37,10 +38,8 @@ public class ClientTableController {
   }
 
   @GetMapping("/{tableId}")
-  public ResponseEntity<ClientTableResponse> getTable(@PathVariable String tableId) {
-    var clientTable = clientTableService.getClientTable(tableId);
-    var members = usersClient.getClients(clientTable.getTableMembers());
-    return ResponseEntity.status(HttpStatus.OK).body(clientTable.toClientTableResponse(members));
+  public ResponseEntity<ClientTable> getTable(@PathVariable String tableId) {
+    return ResponseEntity.status(HttpStatus.OK).body(clientTableService.getClientTable(tableId));
   }
 
   @PatchMapping("/{tableId}")
