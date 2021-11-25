@@ -20,4 +20,6 @@ public interface DishRepository extends JpaRepository<Dish, String> {
 
   void deleteAllByRestaurantId(String restaurantId);
 
+  void deleteAllByCategoryAndRestaurantId(String restaurantId, String name);
+
 }

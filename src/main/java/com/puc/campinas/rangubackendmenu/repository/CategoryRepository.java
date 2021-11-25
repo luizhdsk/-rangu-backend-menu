@@ -16,4 +16,6 @@ public interface CategoryRepository extends JpaRepository<Category, String> {
 
   Optional<Collection<Category>> findAllByRestaurantId(String restaurantId);
 
+  void deleteByNameAndRestaurantId(String name, String restaurantId);
+
 }

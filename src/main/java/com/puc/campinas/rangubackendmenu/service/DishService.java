@@ -10,18 +10,26 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 @Slf4j
 public class DishService {
 
   private DishRepository dishRepository;
 
   private CategoryService categoryService;
+
+  public DishService(DishRepository dishRepository) {
+    this.dishRepository = dishRepository;
+  }
+
+  @Autowired
+  public void setCategoryService(CategoryService categoryService) {
+    this.categoryService = categoryService;
+  }
 
   public Dish saveDish(String restaurantId, Dish dish) {
     dish.setRestaurantId(restaurantId);
@@ -55,6 +63,10 @@ public class DishService {
     dishRepository.deleteAllByRestaurantId(restaurantId);
   }
 
+  public void deleteAllDishesByCategoryAndRestaurantId(String category, String restaurantId) {
+    dishRepository.deleteAllByCategoryAndRestaurantId(category, restaurantId);
+  }
+
   public Collection<DishResponse> getDishesOrders(List<String> dishesId) {
     var dishes = dishRepository.findByIdIn(dishesId);
     if (dishes.size() != dishesId.size()) {
@@ -74,4 +86,6 @@ public class DishService {
     return dishRepository.save(dish);
 
   }
+
+
 }
