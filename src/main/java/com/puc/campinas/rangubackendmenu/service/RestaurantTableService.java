@@ -50,6 +50,7 @@ public class RestaurantTableService {
     return tables;
   }
 
+  @Transactional
   public void deleteRestaurantTable(String restaurantId, String restaurantTableId) {
     restaurantTableRepository.deleteByRestaurantIdAndId(restaurantId, restaurantTableId);
   }
