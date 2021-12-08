@@ -65,6 +65,10 @@ public class ClientTableService {
 
   public ClientTable leaveTable(String tableId, String clientId) {
     var table = getClientTable(tableId);
+    if(table.getClientId().equals(clientId)){
+      var newOwner = table.getTableMembers().stream().findFirst().get();
+      table.setClientId(newOwner);
+    }
     table.getTableMembers().remove(clientId);
     clientTableRepository.save(table);
     return table;
