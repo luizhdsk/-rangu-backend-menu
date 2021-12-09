@@ -69,4 +69,10 @@ public class RestaurantTableService {
   public List<RestaurantTable> getRestaurantTablesByRestaurantId(String restaurantId) {
     return restaurantTableRepository.getAllByRestaurantId(restaurantId);
   }
+
+  public void finishedTable(String clientTableId) {
+    var restaurantTable = restaurantTableRepository.getByClientTableId(clientTableId).get();
+    restaurantTable.setClientTableId(null);
+    restaurantTableRepository.save(restaurantTable);
+  }
 }

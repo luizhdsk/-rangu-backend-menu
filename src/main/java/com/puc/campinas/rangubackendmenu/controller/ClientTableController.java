@@ -50,4 +50,11 @@ public class ClientTableController {
     return ResponseEntity.ok(clientTable.toClientTableResponse(members));
   }
 
+  @PatchMapping("/{tableId}/all")
+  public ResponseEntity<ClientTableResponse> leaveAllTable(@PathVariable String tableId) {
+    var clientTable = clientTableService.leaveAllTable(tableId);
+    var members = usersClient.getClients(clientTable.getTableMembers());
+    return ResponseEntity.ok(clientTable.toClientTableResponse(members));
+  }
+
 }

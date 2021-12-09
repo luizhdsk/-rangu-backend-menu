@@ -15,6 +15,8 @@ public interface RestaurantTableRepository extends JpaRepository<RestaurantTable
 
   List<RestaurantTable> getAllByRestaurantId(String restaurantId);
 
+  Optional<RestaurantTable> getByClientTableId(String clientTableId);
+
   Optional<RestaurantTable> getRestaurantTableByNumberAndAndRestaurantId(String number, String restaurantId);
 
 }
