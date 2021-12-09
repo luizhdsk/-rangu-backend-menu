@@ -6,8 +6,10 @@ import com.puc.campinas.rangubackendmenu.repository.StringSetConverter;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Set;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -39,22 +41,21 @@ public class ClientTable implements Serializable {
 
   private String restaurantId;
 
-  private Instant startDateTime;
+  private LocalDateTime startDateTime;
 
-  private Instant endDateTime;
+  private LocalDateTime endDateTime;
 
   @Convert(converter = StringSetConverter.class)
   private Set<String> tableMembers;
 
 
   public ClientTableResponse toClientTableResponse(Collection<PublicClientResponse> members) {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     return ClientTableResponse.builder()
         .id(id)
         .clientId(clientId)
         .number(number)
         .restaurantId(restaurantId)
-        .startDateTime(formatter.format(Date.from(startDateTime)))
+        .startDateTime(startDateTime.toString())
         .tableMembers(members)
         .build();
   }

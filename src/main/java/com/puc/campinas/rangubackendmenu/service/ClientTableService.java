@@ -7,8 +7,13 @@ import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
 import com.puc.campinas.rangubackendmenu.integration.users.UsersClient;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
+
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +28,7 @@ public class ClientTableService {
   public ClientTable startTable(String clientId, String restaurantTableId) {
     var restaurantTable = getRestaurantTable(restaurantTableId);
     if (isEmpty(restaurantTable)) {
+      Locale myLocale = new Locale("pt", "BR");
       var clientTable = createClientTable(clientId, restaurantTable);
       clientTable = clientTableRepository.save(clientTable);
       occupyRestaurantTable(restaurantTable, clientTable.getId());
@@ -45,7 +51,7 @@ public class ClientTableService {
         .number(restaurantTable.getNumber())
         .restaurantId(restaurantTable.getRestaurantId())
         .tableMembers(Set.of(clientId))
-        .startDateTime(Instant.now())
+        .startDateTime(LocalDateTime.now())
         .build();
   }
 
