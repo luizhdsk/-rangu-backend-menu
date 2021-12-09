@@ -5,7 +5,6 @@ import com.puc.campinas.rangubackendmenu.config.Messages;
 import com.puc.campinas.rangubackendmenu.config.exception.ClientTableException;
 import com.puc.campinas.rangubackendmenu.domain.ClientTable;
 import com.puc.campinas.rangubackendmenu.domain.RestaurantTable;
-import com.puc.campinas.rangubackendmenu.integration.users.UsersClient;
 import com.puc.campinas.rangubackendmenu.repository.ClientTableRepository;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -71,11 +71,24 @@ public class ClientTableService {
 
   public ClientTable leaveTable(String tableId, String clientId) {
     var table = getClientTable(tableId);
-    if(table.getClientId().equals(clientId)){
+    if (table.getClientId().equals(clientId)) {
       var newOwner = table.getTableMembers().stream().findFirst().get();
       table.setClientId(newOwner);
     }
     table.getTableMembers().remove(clientId);
+    if (table.getTableMembers().isEmpty()) {
+      restaurantTableService.finishedTable(tableId);
+      table.setEndDateTime(LocalDateTime.now());
+    }
+    clientTableRepository.save(table);
+    return table;
+  }
+
+  public ClientTable leaveAllTable(String tableId) {
+    var table = getClientTable(tableId);
+    table.setTableMembers(new HashSet<>());
+    restaurantTableService.finishedTable(tableId);
+    table.setEndDateTime(LocalDateTime.now());
     clientTableRepository.save(table);
     return table;
   }
