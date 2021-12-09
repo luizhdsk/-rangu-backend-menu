@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,7 @@ public class ClientTableController {
     return ResponseEntity.status(HttpStatus.OK).body(clientTableService.getClientTable(tableId));
   }
 
-  @PatchMapping("/{tableId}")
+  @PutMapping("/{tableId}")
   public ResponseEntity<ClientTableResponse> leaveTable(@PathVariable String tableId,
       @RequestHeader @Valid String clientId) {
     var clientTable = clientTableService.leaveTable(tableId, clientId);
@@ -50,7 +51,7 @@ public class ClientTableController {
     return ResponseEntity.ok(clientTable.toClientTableResponse(members));
   }
 
-  @PatchMapping("/{tableId}/all")
+  @PutMapping("/{tableId}/all")
   public ResponseEntity<ClientTableResponse> leaveAllTable(@PathVariable String tableId) {
     var clientTable = clientTableService.leaveAllTable(tableId);
     var members = usersClient.getClients(clientTable.getTableMembers());
